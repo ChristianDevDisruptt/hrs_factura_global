@@ -247,10 +247,16 @@
 			 label: oLabels.column4
 		 });
 		 sublist.addField({
+			id: 'custpage_payment',
+			type: ui.FieldType.TEXT,
+			label: oLabels.column7
+		 });
+		 sublist.addField({
 			 id: 'custpage_fxamount',
 			 type: ui.FieldType.CURRENCY,
 			 label: oLabels.column5
 		 });
+		 
 		 sublist.addField({
 			 id: 'custpage_internalid',
 			 type: ui.FieldType.TEXT,
@@ -298,6 +304,11 @@
 						 line: row,
 						 value: records.fxamount
 					 });
+					 sublist.setSublistValue({
+						id: 'custpage_payment',
+						line: row,
+						value: records.payment
+					});
 					 sublist.setSublistValue({
 						 id: 'custpage_internalid',
 						 line: row,
@@ -357,6 +368,9 @@
 				 customRecFacturacion.setValue("custrecord_drt_sat_payment_method", obj.custpage_paymhetod);
 				 customRecFacturacion.setValue("custrecord_drt_sat_payment_term", obj.custpage_payform);
 				 customRecFacturacion.setValue("custrecord_drt_facturas", obj.custpage_arreglo);
+				 var invoices = customRecFacturacion.getValue('custrecord_drt_facturas');
+				 log.debug('id invoices', invoices);
+				 customRecFacturacion.setValue("custrecord_drt_invoice_total", invoices.length);
 				 customRecFacturacion.setValue("custrecord_drt_status", "PROCESANDO");
 			 
 				 var recIdFacturacion = customRecFacturacion.save();

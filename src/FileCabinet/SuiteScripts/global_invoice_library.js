@@ -58,7 +58,7 @@
 				 title: 'afilters',
 				 details: JSON.stringify(afilters)
 			 });
-			 var acolumns = ['tranid', 'trandate', 'entity', 'fxamount'];
+			 var acolumns = ['tranid', 'trandate', 'entity', 'fxamount', 'custbody_mx_txn_sat_payment_method'];
 			 log.audit({
 				 title: 'acolumns',
 				 details: JSON.stringify(acolumns)
@@ -81,7 +81,9 @@
 					 trandate: row.getValue('trandate'),
 					 tranid: row.getValue('tranid'),
 					 fxamount: row.getValue('fxamount'),
-					 name: row.getText('entity')
+					 name: row.getText('entity'),
+					 paymentId : row.getValue('custbody_mx_txn_sat_payment_method'),
+					 payment : row.getText('custbody_mx_txn_sat_payment_method'),
 				 });
 				 return true;
 			 });
@@ -151,6 +153,7 @@
 			 column4: strlang == true ? 'Nombre' : 'Name',
 			 column5: strlang == true ? 'Importe' : 'Amount',
 			 column6: strlang == true ? 'Confirmar' : 'Confirm',
+			 column7: strlang == true ? 'Método de Pago' : 'Payment Method',
 			 help1: strlang == true ? defaultHelpS : defaultHelpE,
 			 help2: strlang == true ? defaultHelpS : defaultHelpE,
 			 help3: strlang == true ? defaultHelpS : defaultHelpE,
